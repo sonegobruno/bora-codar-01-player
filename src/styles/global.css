@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    boxSizing: 'border-box';
+}
+
+body {
+    -webkit-font-smoothing: 'antialiased';
+    background-color: #0F0D13;
+    color: #E1E1E6;
+}
+
+
+body, input, textarea, button {
+    font-family: 'Roboto';
+    font-weight: 400;
+}
