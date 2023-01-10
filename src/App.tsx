@@ -6,24 +6,7 @@ import * as Progress from '@radix-ui/react-progress';
 import { useEffect, useState } from 'react';
 import { SONGS } from './utils/songs';
 import { Song } from './entities/song';
-
-const MAX_PROGRESS = 300
-
-function formatTime(currentTime: number) {
-  const timeInSeconds = Math.round(currentTime)
-
-  if(!Number.isNaN(timeInSeconds)) {
-    const minutesAmount = Math.floor( timeInSeconds / 60)
-    const secondsAmount = timeInSeconds % 60
-  
-    const minutes = String(minutesAmount).padStart(2, '0')
-    const seconds = String(secondsAmount).padStart(2, '0')
-  
-    return minutes.padStart(2, '0') + ':' + seconds.padStart(2, '0')
-  }
-
-  return '00:00'
-}
+import { formatTime } from './utils/formatTime';
 
 function App() {
   const [ currentSong, setCurrentSong ] = useState<Song>(SONGS[0])
@@ -36,9 +19,6 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   const [ musicInterval, setMusicInterval ] = useState<number | null>(null)
-
-  const progressTransform = { transform: `translateX(-${100 - progress}%)` }
-  const isFirstSong = SONGS[0].id === currentSong.id
 
   useEffect(() => {
     setSongPlaying(new Audio(currentSong.music))
@@ -89,17 +69,8 @@ function App() {
     handleStopSong()
     clearTime();
 
-    const lastSongIndex = SONGS.length - 1
-    const lastSong = SONGS[lastSongIndex]
-
-    const isLastSong = lastSong.id === currentSong.id
-
-    if(isLastSong) {
-      setCurrentSong({ ...SONGS[0] })
-    } else {
-      const currentSongIndex = SONGS.findIndex(song => song.id === currentSong.id)
-      setCurrentSong({ ...SONGS[currentSongIndex + 1] })
-    }
+    const currentSongIndex = SONGS.findIndex(song => song.id === currentSong.id)
+    setCurrentSong({ ...SONGS[currentSongIndex + 1] })
   }
 
   function clearSongInterval() {
@@ -113,6 +84,13 @@ function App() {
     setDurantionTime('00:00')
     setProgress(0)
   }
+
+  const progressTransform = { transform: `translateX(-${100 - progress}%)` }
+  
+  const isFirstSong = SONGS[0].id === currentSong.id
+
+  const lastSong = SONGS[SONGS.length - 1]
+  const isLastSong = lastSong.id === currentSong.id
 
   return (
     <main>
@@ -139,7 +117,7 @@ function App() {
               </button>
             )}
 
-            <button onClick={handleNextSong}>
+            <button disabled={isLastSong} onClick={handleNextSong}>
               <FastForward size={27}  weight="fill"/>
             </button>
           </div>
