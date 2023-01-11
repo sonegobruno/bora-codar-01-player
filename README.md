@@ -8,6 +8,10 @@ Projeto criado com o desafio de criar um Player de música funcional e responsiv
   <img alt="link-figma" height="20" src="https://img.shields.io/badge/Figma-Acessar%20Figma-orange" />
 </a>
 
+<a href="https://bora-codar-01.vercel.app/" target="_blank">
+  <img alt="link-figma" height="20" src="https://img.shields.io/badge/Player-Acessar%20Player-blue" />
+</a>
+
 ## :fireworks: Imagens
 
 ### Desktop
