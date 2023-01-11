@@ -11,14 +11,11 @@ Projeto criado com o desafio de criar um Player de música funcional e responsiv
 ## :fireworks: Imagens
 
 ### Desktop
-<div justify="center">
-  <img src="./assets/img-1.png" width="100%"  >
-</div>
+<img src="./assets/img-1.png" width="100%"  >
+
 
 ### Mobile
-<div justify="center">
-  <img src="./assets/img-2.png" width="100%"  >
-</div>
+<img src="./assets/img-2.png"  >
 
 ## :rocket: Iniciando projeto
 
